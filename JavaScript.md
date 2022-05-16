@@ -104,7 +104,7 @@ console.log(`${a} + ${b} = ${a + b}`); // 2 + 3 = 5
 
 
 
-## 값의 전달과 참조 전달
+## 값의 전달, 참조 전달
 
 - 함수에 원시값을 인수로 넘겼을 경우 : 값의 전달
 
@@ -183,4 +183,106 @@ var a = [2, 4, 6, 8];
 a.length = 2;     
 console.log(a);  //[2, 4]
 ```
+
+
+
+## 타이머 함수
+
+- setTimeout(함수, 시간) : 일정 시간 후 함수 실행
+
+- setInterval(함수, 시간) : 일정 시간 간격으로 함수 반복 실행
+
+- clearTimeout(id) : 실행되고 있는 timeout 을 중지
+
+- clearInterval(id) : 실행되고 있는 interval 을 중지
+
+
+
+## 비동기 처리
+
+- 비동기적으로 실행되는 코드는 순차적으로 실행되지 않는다.
+
+```javascript
+console.log("A");
+setTimeout(function() { console.log("B"); }, 0);
+console.log("C");
+
+//A, C, B 순서로 표시됨
+```
+
+: setTimeout 함수는 인수로 받은 콜백 함수를 일정 시간 후 실행하도록 예약하는 처리만 하고 바로 다음 코드를 실행한다. 호출 스택에 실행 문맥이 남아 있을 경우 그 작업이 끝날 때까지 기다렸다가 실행한다.
+
+#### [1]callback 함수
+
+- 콜백함수는 다른 함수에 매개변수로 넘겨준 함수를 뜻한다.
+-  setTimeout 함수는 callback 함수를 정의하여 일정 시간 후에 콜백함수를 자동으로 호출한다.
+
+```javascript
+function sleep(callback){
+    setTimeout(function(){
+        callback();
+    }, 1000);
+}
+	sleep(function(){
+        console.log("A");
+        sleep(function(){
+            console.log("B");
+            sleep(function(){
+                console.log("C");
+            });
+        });
+    });
+//A, B, C 순서로 표시됨
+```
+
+- 콜백 함수를 여러 개 중첩하면 작업 내용을 이해하기가 어려워지는데, 이를 '콜백 지옥(Callback Hell)' 이라고 한다.
+- 해결 방법 : Promise 사용
+
+
+
+#### [2] Promise
+
+: 비동기 처리를 실행하고 그 처리가 끝난 후에 다음 처리를 실행하기 위한 용도로 Promise를 사용한다.
+
+##### - Promise의 상태
+
+- Pending(대기) : 비동기 처리 로직이 아직 완료되지 않은 상태
+- Fulfilled(이행) : 비동기 처리가 완료되어 프로미스가 결과 값을 반환해준 상태
+- Rejected(실패) : 비동기 처리가 실패하거나 오류가 발생한 상태
+
+##### - Promise 생성자
+
+- Promise를 사용하려면 먼저 Promise 객체를 생성해야한다
+
+```javascript
+var promise = new Promise(function(resolve, reject) { ... } );
+            
+            //new Promise(executor)
+```
+
+- Promise 는 매개변수로 executor 를 받게 된다. Promise를 생성하면 executor 콜백함수가 자동으로 실행된다.
+  - executor : resolve 및 reject 인수를 전달할 실행 함수
+
+
+- resolve : 함수 안의 처리가 성공적으로 끝났을 때 호출해야하는 콜백 함수
+
+  reject : 함수 안의 처리가 실패했을 때 호출해야 하는 콜백 함수
+
+- Promise를 생성하여 비동기 처리를 구현 후 resolve(), reject() 콜백 함수를 호출하여 그결과를 전달한다.
+
+- Promise 사용하는 곳에서 결과를 then, catch, finally 등으로 받을 수 있다.
+
+##### - resolve 함수 -> then
+
+- resolve 함수에 인수로 넘긴 값은 then 메서드에 인수로 넘긴 함수에 전달되어 다음 처리를 위해 사용된다.
+
+
+
+##### - reject 함수 -> catch
+
+
+
+##### - Promise finally
+
+- finally()는 Promise가 resolve나 reject가 되던 상관없이 지정된 함수를 실행합니다.
 
