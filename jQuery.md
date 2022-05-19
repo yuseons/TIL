@@ -178,6 +178,18 @@ $("input[name ~='man']")
 
 
 
+#### 6. [attribute |= 'value']
+
+- $("태그[속성 |= 값]")
+   : 지정된 속성 중에서 주어진 '값'과 같거나 '값-'(하이픈)이 있는 요소 선택
+
+```javascript
+"a[hreflang |= 'en']"
+
+//<a href="example.html" hreflang="en">Some text</a>
+//<a href="example.html" hreflang="en-UK">Some other text</a> 이 선택됨
+```
+
 
 
 ##  ◻필터
