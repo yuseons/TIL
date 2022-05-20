@@ -375,8 +375,7 @@ $( 'A' ).replaceWith( 'B' );
 ### [1] Hide/Show
 
 #### 1. hide() / show()
-
- 	: Html elements를 숨기거나 보여준다
+​	: Html elements를 숨기거나 보여준다
 
 - hide(speed,callback) / show(speed,callback) 
 
