@@ -1,14 +1,20 @@
 # 🔸JavaScript
 
+
+
+[TOC]
+
+
+
 ## ◻JavaScript 란?
 
 - 동적인 처리를 목적으로 고안된 객체 기반의 스크립트 프로그래밍 언어이다.
 
 - HTML과 Server Script(백앤드) 사이에서 접속자의 마우스 클릭, 키보드 입력등 이벤트 처리를 주로 담당한다.
 
-- HTML + CSS <---> JavaScript <---> 백앤드
-  출력 동작/이벤트 데이터베이스 접속 처리
-  (Oracle, MySQL...) 
+- HTML + CSS       <--->       JavaScript      <--->     백앤드
+  출력                               동작/이벤트      데이터베이스 접속 처리
+                                                                       (Oracle, MySQL...) 
   
    
 
