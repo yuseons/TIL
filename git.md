@@ -2,13 +2,13 @@
 
 ## 🔸Git
 
-### Git 이란?
+### ◻Git 이란?
 
 - 분산형 버전 관리 시스템입니다.
 
 
 
-### Git의 장점
+### ◻Git의 장점
 
 1. 같은 파일을 여러 명이 동시에 작업할 수 있어 병렬 개발이 가능합니다.
 2. 분산 버전 관리 시스템이기 때문에 인터넷이 연결없이도 개발을 진행할 수 있으며, 중앙 저장소가 날아가도 원상복구할 수 있습니다.
@@ -16,13 +16,13 @@
 
 
 
-### Git 초기 설정
+### ◻Git 초기 설정
 
 - 누가 커밋 기록을 남겼는지 확인할 수 있도록 이름과 이메일을 최초 한 번만 설정합니다. 
   - `git config --global user.name '이름'` : 이름 설정
   - `git config --global user.email '메일 주소'` : 메일 설정
 
-### 로컬 저장소
+### ◻로컬 저장소
 
 - `Working Directory (= Working Tree)` : 사용자의 일반적인 작업이 일어나는 곳
 - `Staging Area (= Index)` : 커밋을 하기 위한 파일 및 폴더가 모여있는 곳
@@ -30,7 +30,7 @@
 - Git은 **Working Directory → Staging Area → Repository** 의 과정으로 버전 관리를 수행합니다.
 - ![파일의 라이프사이클.](https://git-scm.com/book/en/v2/images/lifecycle.png)
 
-### Git 기본 명령어
+### ◻Git 기본 명령어
 
 1. `git init` 
   - 현재 작업 중인 디렉토리를 Git으로 관리한다는 명령어
@@ -77,3 +77,41 @@
 - `git log --all` : 현재 브랜치를 포함한 모든 브랜치의 내역을 보여줍니다.
 - `git log --oneline --reverse` : 오래된 커밋 내역부터 보여줍니다. (최신이 가장 아래)
 - `git log -p` : 파일의 수정된 내용도 같이 보여줍니다.
+
+
+
+
+
+## 🔸Github
+
+  ### ◻Github란?
+
+  - Git 데이터를 온라인에 저장해주는 사이트입니다.
+
+  - Github의 원격 저장소를 이용해 내 컴퓨터의 로컬 저장소를 다른 사람과 공유할 수 있습니다. 
+
+  ### ◻Git과 Github
+
+  - Git으로 작업한 내용을 로컬 저장소에 저장하고, 해당 내용을 Github에 업로드 하거나 Github에 있는 파일을 내려받을 수 있습니다.
+    - 커밋(Commit) : Git(로컬 저장소)에 파일을 추가하거나 변경 내용을 저장하는 작업
+    - 푸쉬(Push) : Github(또는 원격 저장소)에 파일을 추가하거나 변경 내용을 저장하는 작업
+    - 풀(Pull) : Github(또는 원격 저장소)에서 파일을 다운로드하는 작업
+
+  ### ◻로컬 저장소와 원격 저장소와의 연결
+
+  1. `git remote add origin <github 주소>` : 원격 저장소에 등록합니다.
+
+  2. `git remote -v` : 원격 저장소를 조회합니다.
+
+  3. `git remote rm origin` / `git remote remove origin` : 원격 저장소와의 연결을 삭제합니다.
+
+  ### ◻원격 저장소에 업로드
+
+  - `git push origin [브랜치 이름]` : 로컬 저장소의 커밋을 원격 저장소에 업로드 합니다.
+  - **git add → git commit → git push** 의 단계로 Github 원격 저장소에 업로드 합니다.
+
+  ### ◻원격 저장소에서 가져오기
+
+  1. `git clone [원격 저장소 주소]` : 원격 저장소의 커밋 내역을 복제해서 내 로컬 저장소에 생성합니다.
+     - git clone을 통해 생성된 로컬 저장소는 git init과 git remote add가 이미 수행되어 있습니다.
+  2. `git pull origin [브랜치 이름]` : 원격 저장소의 변경 사항을 가져와서 로컬 저장소를 업데이트 합니다.
