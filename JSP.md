@@ -16,65 +16,66 @@
 
   [1] page Directive 태그
 
-1. contentType 속성
-2. import 속성
-3. pageEncoding
-4. errorPage , isErrorPage 속성
+  1. contentType 속성
+  2. import 속성
+  3. pageEncoding
+  4. errorPage , isErrorPage 속성
 
-[2] Include Directive 태그
+  [2] Include Directive 태그
 
-[3] taglib Directive 태그
+  [3] taglib Directive 태그
 
 - [◻액션태그](#액션태그)
 
-1. useBean, setProperty, getProperty
-2. forward
-3. include
+  1. useBean, setProperty, getProperty
+  2. forward
+  3. include
 
 - [◻JSP 내장객체](#jsp-내장객체)
 
   [[1] 입출력 객체](#1-입출력-객체)
 
-1. request 객체
+  1. request 객체
 
-\- request 객체 관련 메소드
+     \- request 객체 관련 메소드
 
-\- request 객체 관련 메소드(파라미터 메소드)
+     \- request 객체 관련 메소드(파라미터 메소드)
 
-2.  response 객체
+  2. response 객체
 
-\- response 객체 메소드
+     \- response 객체 메소드
 
-3.  out 객체
+  3. out 객체
 
-\- out 객체 메소드
+     \- out 객체 메소드
 
-[[2] 외부환경 관련 객체](#2-외부환경-관련-객체)
+  [[2] 외부환경 관련 객체](#2-외부환경-관련-객체)
 
-1. session 객체
+  1. session 객체
 
-\- session 객체 메소드
+     \- session 객체 메소드
 
-2. application 객체
+  2. application 객체
 
-application 객체 메소드
+     \- application 객체 메소드
 
-3.  pageContext 객체
+  3. pageContext 객체
 
-pageContext 메소드
+     \- pageContext 메소드
 
-[[3] 서블릿 관련 객체](#3-서블릿-관련-객체)
+  [[3] 서블릿 관련 객체](#3-서블릿-관련-객체)
 
-1.  page 객체
+  1.  page 객체
 
-2.  config 객체
+  2.  config 객체
 
-config 메소드
+      \- config 메소드
 
-[[4] 예외 관련 객체](#4-예외-관련-객체)
+  [[4] 예외 관련 객체](#4-예외-관련-객체)
 
-exception 객체
-exception 객체 메소드
+  \- exception 객체
+
+  \- exception 객체 메소드
 
 - [◻ 서블릿 기초 문법](#-서블릿-기초-문법)
 
@@ -86,8 +87,8 @@ exception 객체 메소드
 
   [4] 서블릿의 요청 방식
 
-1.  get방식
-2.  post방식
+  1.  get방식
+  2.  post방식
 
 ## ◻ JSP 기초문법
 
