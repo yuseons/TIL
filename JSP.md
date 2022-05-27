@@ -1,52 +1,63 @@
 # 🔸JSP
 
 - [◻ JSP 기초문법](#-jsp-기초문법)
-  - [1] 스크립틀릿
-  - [2] 선언문
-  - [3] 표현식(Expression)
-  - [4] 주석
+  
+  [1] 스크립틀릿
+  
+  [2] 선언문
+  
+  [3] 표현식(Expression)
+  
+  [4] 주석
+  
 - [◻지시자(Directive) 태그](#지시자directive-태그)
-  - [1] page Directive 태그
-    - \1. contentType 속성
-    - 2. import 속성
-    - 3. pageEncoding
-    - 4. errorPage , isErrorPage 속성
-  - [2] Include Directive 태그
-  - [3] taglib Directive 태그
+  
+  [1] page Directive 태그
+	1. contentType 속성
+	2. import 속성
+	3. pageEncoding
+	4. errorPage , isErrorPage 속성
+  
+  [2] Include Directive 태그
+  
+  [3] taglib Directive 태그
+  
 - [◻액션태그](#액션태그)
-  - 1. useBean, setProperty, getProperty
-  - 2.forward
-  - 3. include
+	1. useBean, setProperty, getProperty
+	2. forward
+	3. include
+  
 - [◻JSP 내장객체](#jsp-내장객체)
-  - [[1] 입출력 객체](#1-입출력-객체)
-    1. request 객체
-    - request 객체 관련 메소드
-    - request 객체 관련 메소드(파라미터 메소드)
-    2. response 객체
-    - response 객체 메소드
-    3. out 객체
-    - out 객체 메소드
-  - [[2] 외부환경 관련 객체](#2-외부환경-관련-객체)
-    - 1. session 객체
-      - session 객체 메소드
-    - [2. application 객체
-      - application 객체 메소드
-    - [3. pageContext 객체
-      - pageContext 메소드
-  - [[3] 서블릿 관련 객체](#3-서블릿-관련-객체)
-    - [1. page 객체
-    - [2. config 객체
-      - config 메소드
-  - [[4] 예외 관련 객체](#4-예외-관련-객체)
-    - exception 객체
-      - exception 객체 메소드
+  [[1] 입출력 객체](#1-입출력-객체)
+    	1. request 객체
+    	  - request 객체 관련 메소드
+    	  - request 객체 관련 메소드(파라미터 메소드)
+    	2. response 객체
+    	  - response 객체 메소드
+    	3. out 객체
+    	  - out 객체 메소드
+  [[2] 외부환경 관련 객체](#2-외부환경-관련-객체)
+    	1. session 객체
+    	  - session 객체 메소드
+    	2. application 객체
+    	  - application 객체 메소드
+    	3. pageContext 객체
+    	  - pageContext 메소드
+  [[3] 서블릿 관련 객체](#3-서블릿-관련-객체)
+    	1. page 객체
+    	2. config 객체
+    	  - config 메소드
+  [[4] 예외 관련 객체](#4-예외-관련-객체)
+    	  - exception 객체
+    	  - exception 객체 메소드
+  
 - [◻ 서블릿 기초 문법](#-서블릿-기초-문법)
-  - [1] 서블릿
-  - [2] 서블릿의 주요 클래스
-  - [3] 서블릿의 라이프 사이클
-  - [4] 서블릿의 요청 방식
-    - 1. get방식
-    - 2. post방식
+  [1] 서블릿
+  [2] 서블릿의 주요 클래스
+  [3] 서블릿의 라이프 사이클
+  [4] 서블릿의 요청 방식
+    	1. get방식
+    	2. post방식
 
 ## ◻ JSP 기초문법
 
@@ -274,7 +285,7 @@ http://localhost:8000/jsptest/request.jsp?pay=3000000&name=홍길동&java=100&js
 
 ##### - request 객체 관련 메소드
 
-​ : 웹브라우저와 웹 서버의 정보를 반환한다
+ : 웹브라우저와 웹 서버의 정보를 반환한다
 
 - `getContextPath()` : 해당 JSP페이지가 속한 웹 애플리케이션의 콘텍스트 경로를 얻는다.
 
@@ -291,7 +302,7 @@ http://localhost:8000/jsptest/request.jsp?pay=3000000&name=홍길동&java=100&js
 
 ##### - request 객체 관련 메소드(파라미터 메소드)
 
-​ : \<form> 태그로 전송된 데이터를 받아오는 메서드
+ : \<form> 태그로 전송된 데이터를 받아오는 메서드
 
 - `String getParameter(String name)` : name의 값을 알 때, name에 해당하는 파라미터의 값을 받아옴
 
@@ -301,7 +312,7 @@ http://localhost:8000/jsptest/request.jsp?pay=3000000&name=홍길동&java=100&js
 
 #### 2. response 객체
 
-​ : 웹 브라우저의 요청에 응답할 응답 정보를 가지고 있는 JSP 내장 객체
+ : 웹 브라우저의 요청에 응답할 응답 정보를 가지고 있는 JSP 내장 객체
 
 - 처리 결과를 웹 브러우저에게 출력할 목적을 가지고 있다.
 
@@ -400,7 +411,7 @@ http://localhost:8000/jsptest/request.jsp?pay=3000000&name=홍길동&java=100&js
 
 ### [3] 서블릿 관련 객체
 
-​ : page객체와 config객체를 통해서 JSP페이지가 변환된 서블릿과 관련된 내용에 접근할 수 있도록 하는 객체들이다.
+ : page객체와 config객체를 통해서 JSP페이지가 변환된 서블릿과 관련된 내용에 접근할 수 있도록 하는 객체들이다.
 
 #### 1. page 객체
 
