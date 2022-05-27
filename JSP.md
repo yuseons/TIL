@@ -7,25 +7,25 @@
   - [4] 주석
 - [◻지시자(Directive) 태그](#지시자directive-태그)
   - [1] page Directive 태그
-    -1. contentType 속성
-    -2. import 속성
-    -3. pageEncoding
-    -4. errorPage , isErrorPage 속성
+    - \1. contentType 속성
+    - 2. import 속성
+    - 3. pageEncoding
+    - 4. errorPage , isErrorPage 속성
   - [2] Include Directive 태그
   - [3] taglib Directive 태그
 - [◻액션태그](#액션태그)
-  -1. useBean, setProperty, getProperty
-  -2.forward
-  -3. include
+  - 1. useBean, setProperty, getProperty
+  - 2.forward
+  - 3. include
 - [◻JSP 내장객체](#jsp-내장객체)
   - [[1] 입출력 객체](#1-입출력-객체)
-    - 1. request 객체
-      - request 객체 관련 메소드
-      - request 객체 관련 메소드(파라미터 메소드)
-    - 2. response 객체
-      - response 객체 메소드
-    - 3. out 객체
-      - out 객체 메소드
+    1. request 객체
+    - request 객체 관련 메소드
+    - request 객체 관련 메소드(파라미터 메소드)
+    2. response 객체
+    - response 객체 메소드
+    3. out 객체
+    - out 객체 메소드
   - [[2] 외부환경 관련 객체](#2-외부환경-관련-객체)
     - 1. session 객체
       - session 객체 메소드
