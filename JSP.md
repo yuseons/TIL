@@ -92,11 +92,11 @@
 
 - [◻Session, Cookie](#session-cookie)
 
-​ [1] HTTP 프로토콜
+  [1] HTTP 프로토콜
 
-​ [2] Session
+  [2] Session
 
-​ [3] Cookie
+  [3] Cookie
 
 ## ◻ JSP 기초문법
 
