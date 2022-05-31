@@ -31,9 +31,9 @@
 
   \- 이러한 문제의 해결책으로 웹 응용프로그램을 비즈니스 로직과 표현으로 분리하여 개발하고자 하는 것이 MVC 모델이다.
 
-![mvc]()
+![mvc](https://github.com/yuseons/TIL/blob/master/image/MVC.jpg)
 
-![MVC2]()
+![MVC2](https://github.com/yuseons/TIL/blob/master/image/MVC2.jpg)
 
 
 
@@ -42,7 +42,7 @@
 ### [1] JSP+JavaBeans개발과 MVC 모델 구조
 #### 1. Model 1 (JSP+JavaBeans) 의 구조 
 
-![model1]())
+![model1](https://github.com/yuseons/TIL/blob/master/image/model1.jpg))
 
 \- 브라우저의 요청을 **JSP가 전부 다 처리**한다.
 \- 웹 브라우저의 요청을 받은 JSP는 자바빈이나 서비스 클래스를 사용해서 작업을 처리하고, 결과를 클라이언트에 출력한다.
@@ -59,7 +59,7 @@
 
 : Model 1의 문제점을 보완
 
-![model2]()
+![model2](https://github.com/yuseons/TIL/blob/master/image/model2.jpg)
 
 
 
