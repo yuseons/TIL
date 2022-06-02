@@ -39,7 +39,12 @@
 
 ## ◻ MVC 개발
 
+
+
 ### [1] JSP+JavaBeans개발과 MVC 모델 구조
+
+
+
 #### 1. Model 1 (JSP+JavaBeans) 의 구조 
 
 ![model1](https://github.com/yuseons/TIL/blob/master/image/model1.jpg))
@@ -127,5 +132,104 @@ Browser  ---> Servlet(Controller)
     						->  JSP로 이동
     							-> HTTP 응답 
     								-> 브라우저
+```
+
+
+
+### [2] MVC App 개발 순서 
+
+
+
+#### 1. JSP + JavaBeans 개발 순서  ( Model 1 )
+
+1. DBMS 설정
+2. DTO(Data Transfer Object) Class 제작 
+3. DAO(Data Access Object) Class 제작 
+4. Service Class 제작 
+5. Service/DAO test 
+6.  JSP 생성 연동 
+
+
+
+#### 2. MVC Web Application 개발 순서 ( Model 2 )
+1. DBMS 설정 
+2. DTO(Data Transfer Object) Class 제작 
+3. DAO(Data Access Object) Class 제작 
+4. Service Class 제작 
+5. Service/DAO test 
+6. Servlet Controller 제작 
+7. Action Interface 제작 
+8. Action 구현 Class 제작 
+9. Service Class 연동  
+10. JSP 생성 연동 
+
+
+
+## ◻ Properties class, String class, Class class
+
+### [1] Properties Class
+
+ \- 키와 값의 구조를 가지고 있으며 특정 객체를 생성하는 경우에 초기값으로 많이 사용한다.
+
+ \- Properties 클래스는 Hashtables의 하위 클래스이다.
+
+ \- Hashtables를 상속 받았기 때문에 Map의 속성 즉, Key와 Value를 갖는다.
+
+ \- HashMap과 큰 차이가 없지만, Properties 클래스는 파일 입출력을 지원한다.
+
+ \- key=value 형식으로 작성 된 파일을 key와 value 로 나누어 저장할 때 유용하다.
+
+
+
+ \- 상속 구조
+
+java.lang.Object 
+  java.util.Dictionary<K,V> 
+    java.util.Hashtable<Object,Object> 
+      java.util.Properties<String,String> 
+
+
+
+#### 1. JAVA 웹 프로젝트에서 Properties 파일 활용
+
+- 웹 어플리케이션이 시작하자마자 가져와야하는 정보들을 프로퍼티 파일에 작성해서 관리할 수 있다.
+- 프로퍼티 파일은 한 줄에 key=value 형식으로 작성하고 .properties 확장자를 붙여서 저장한다.
+** **작성한 후** 각 줄의 맨뒤에 **빈공간이 없어야한다.** 
+
+```
+driver=oracle.jdbc.driver.OracleDriver
+url=jdbc:oracle:thin:@127.0.0.1:1521:XE
+account=user1234
+password=1234
+```
+- java.util.Properties 클래스를 사용해서 프로퍼티 파일을 다룬다. 
+	- Properties는 key=value 형식의 텍스트 파일을 다룰 때 사용하는 클래스다.
+
+
+
+ #### 2. Properties 주요 메소드
+
+
+
+
+| 메소드                                              | 설명                                                         |
+| :-------------------------------------------------- | ------------------------------------------------------------ |
+| String getProperty(String key)                      | 지정된 키(key)와 값(value)를 반환                            |
+| String getProperty(String key, String defaultValue) | 지정된 키(key)와 값(value)를 반환 (키를 찾지못하면 defaultValue를 반) |
+| void list(PrintStream out)                          | 지정한 PrintStream에 저장된 목록을 출력                      |
+| void list(PrintWriter out                           | 지정한 PrintWriter에 저장된 목록을 출력                      |
+| void load(InputStream inStream)                     | 지정된 InputStream으로부터 목록을 읽어서 저장                |
+| void load(InputStream inStream)                     | 인자로 전달된 입력 스트림으로부터 키와 요소가 한 쌍으로 구성된 속성 목록들을 읽어와서 Properties 객체에 저장 |
+| void loadFromXML(InputStream in)                    | 지정된 InputStream으로부터 XML문서를 읽고, XML문서에 저장된 목록을 읽어서 담음 (load&store) |
+| Enumeration                                         | 목록의 모든 키(key)가 담긴 Enumeration을 반환                |
+| getProperty(String                                  | 지정된 키의 값을 반환                                        |
+| Object setProperty(String key, String value)        | - 지정된 키와 값을 저장.     - 이미 존재하는 키면 새로운 값으로 바뀜.                - 기존에 같은 키로 저장된 값이 있는 경우 그 값을 Object타입으로 반환하며 그렇지 않으면 null을 반환 |
+
+```java
+Properties properties = new Properties(); // 객체생성
+
+properties.getProperty("website");    // getProperty로 키값 꺼내기
+
+properties.load(new Filereader(filePath)); //파일의 내용을 읽어서 키-값의 형태로 분류해서 맵에 보관
 ```
 
