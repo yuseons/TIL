@@ -165,7 +165,7 @@ Browser  ---> Servlet(Controller)
 
 
 
-## ◻ Properties class, String class, Class class
+## ◻ Properties class, String class
 
 ### [1] Properties Class
 
@@ -233,3 +233,280 @@ properties.getProperty("website");    // getProperty로 키값 꺼내기
 properties.load(new Filereader(filePath)); //파일의 내용을 읽어서 키-값의 형태로 분류해서 맵에 보관
 ```
 
+
+
+### [2] String class
+
+: 문자열 추출
+
+
+
+- `startsWith()` : 어떤 문자열이 특정 문자로 시작하는지 확인하여 결과를 **true** 혹은 **false**로 반환한다.
+  - 문자열의 끝이 주어진 문자열로 끝나면 **true**, 그렇지 않다면 **false**
+
+
+```javascript
+str.startsWith(searchString[, position])
+
+// searchString : 문자열의 시작 지점에서 탐색할 문자열
+//position (생략가능) : searchString을 탐색할 위치. 기본값 0.
+```
+
+- `endsWith()` : 어떤 문자열에서 특정 문자열로 끝나는지를 확인할 수 있으며, 그 결과를 **true** 혹은 **false**로 반환한다. 
+  - 문자열의 끝이 주어진 문자열로 끝나면 **true**, 그렇지 않다면 **false**
+
+
+```javascript
+str.endsWith(searchString[, length])
+    
+// searchString : 이 문자열의 끝이 특정 문자열로 끝나는지를 찾기 원하는 문자열입니다.
+// length (생략가능) : 찾고자 하는 문자열의 길이값이며, 기본값은 문자열 전체 길이이다. 
+	// 문자열의 길이값은 문자열 전체 길이 안에서만 존재하여야 한다.
+  
+```
+
+- `indexOf()`: 배열에서 지정된 요소를 찾을 수 있는 첫 번째 인덱스를 반환하고 존재하지 않으면 -1을 반환한다.
+  - 배열 내의 요소의 최초의 인덱스를 반환한다.  발견되지 않으면 -1.
+  - 문자열을 찾을 때 대소문자를 구분한다.
+
+```javascript
+string.indexOf(searchvalue, position)
+// searchvalue : 필수 입력값, 찾을 문자열
+// position (생략 가능) : 기본값은 0, string에서 searchvalue를 찾기 시작할 위치
+```
+
+
+
+- `lastIndexOf()` : 주어진 값과 일치하는 부분을 `fromIndex`로부터 역순으로 탐색하여, 최초로 마주치는 인덱스를 반환한다. 일치하는 부분을 찾을 수 없으면 `-1`을 반환한다.
+  - 문자열 내에서 searchValue가 마지막으로 등장하는 인덱스를 반환한다. 등장하지 않으면 `-1`.
+
+```javascript
+str.lastIndexOf(searchValue[, fromIndex])
+
+// searchValue : 탐색할 문자열. 빈 값을 제공할 경우 fromIndex를 반환
+/* 
+	fromIndex (생략 가능) : 탐색의 시작점으로 사용할 인덱스. 기본값은 +Infinity. 
+	fromIndex >= str.length인 경우 모든 문자열을 탐색한다. 
+	fromIndex < 0인 경우엔 0을 지정한 것과 동일하다.
+*/
+```
+
+
+
+## ◻ MVC의 구현
+
+
+
+### [01] 템플릿 기반의 URI Command Pattern에 기반한 MVC의 구현 
+
+- URI상에 있는 주소를 얻어와 명령어로 처리하는 패턴
+
+ \- STS Setting 
+  	Project Type: Dynamic Web Project 
+  	Name: mvc 
+  	Package Name: action, controller, model
+
+ 
+
+ \- 폴더 구조 
+    mvc/src/main/webapp/view   : jsp 파일들 
+
+​    mvc/src/main/webapp/template  : template관련 파일들 
+
+​    mvc/src/main/webapp/WEB-INF  : web.xml 환경 설정 파일 위치 
+
+​    mvc/src/main/java    : 서블릿 클래스 위치
+
+​    mvc/src/main/webapp/WEB-INF/config  : properties 파일등, 기타 리소스 파일 
+
+​    mvc/src/main/webapp/WEB-INF/lib   : jar 파일의 라이브러리 위치, 자동 생성 
+
+
+
+#### 1. Service Class 
+
+\- DAO : 데이터에 접근할 때 사용되는 기능을 제공
+
+  Service Class  : 사용자의 요청을 처리하기 위한 기능을 제공
+
+\- 서비스 클래스는 주로 DAO를 통해서 데이터에 접근하고 기능을 수행하는데 필요한 로직을 수행한다. 
+
+\- 한 개의 Service Class는 한 개의 기능만 제공하는 게 구현이나 유지 보수하는데 좋다.
+
+
+
+\>>> CommandService.java 
+
+```java
+package model; 
+
+import java.util.Date; 
+
+public class CommandService{ 
+
+  /** 
+   \* 기본 생성자 
+   */ 
+  public CommandService() { 
+    super(); 
+  } 
+
+  public StringBuffer getHello(){ 
+    StringBuffer sb = new StringBuffer(); 
+    sb.append("<li> 안녕하세요..MVC 입니다.<br>"); 
+    sb.append("<li> Template Page<br>"); 
+    sb.append("<li> URI Command Pattern<br>"); 
+    sb.append("<li> Properties 파일을 이용한 처리입니다.<br>"); 
+     
+    return sb; 
+
+  } 
+
+  public String getDate(){ 
+    Date dt = new Date(); 
+    String str = dt.toLocaleString(); 
+     
+    return str; 
+  } 
+
+} 
+
+```
+
+
+
+#### 2. Command Handler 
+
+ \- 인터페이스 또는 추상 클래스로 구현한다.
+ \- 비즈니스 로직 클래스(자식 클래스)들이 동일한 메소드를 실행하도록 강제성을 부여하며 표준 인터페이스 역할을 한다.
+
+
+
+\>>> Action.java 
+
+```java
+package action; 
+
+import javax.servlet.http.HttpServletRequest; 
+import javax.servlet.http.HttpServletResponse; 
+
+/** 
+ * 표준 인터페이스 
+ * @author stu 
+ */ 
+public interface Action { 
+    /** 
+     * 로직 처리 메소드 
+     * @param request 내부 객체 
+     * @param response 내부 객체 
+     * @return 처리 결과 문자열 
+     * @throws Throwable 
+     */ 
+    public String execute( 
+        HttpServletRequest request, HttpServletResponse response) 
+    throws Throwable; 
+}  
+```
+
+
+
+#### 3. Action Class 
+\- Action Interface를 상속받아 구현한다.
+
+
+
+\>>> HelloAction.java 
+
+```java
+package action; 
+
+import javax.servlet.http.HttpServletRequest; 
+import javax.servlet.http.HttpServletResponse; 
+
+public class HelloAction implements Action { 
+   
+  public String execute(HttpServletRequest request, 
+    HttpServletResponse response) 
+  throws Throwable { 
+    CommandService commandService= new CommandService(); 
+     
+    StringBuffer sb = commandService.getHello(); 
+     
+    request.setAttribute("hello", sb); 
+
+    System.out.println("HelloAction Loading"); 
+     
+    // Context Path을 제거한 경로 지정 
+    return "/view/hello.jsp"; 
+   
+  } 
+} 
+```
+
+
+
+\>>> DateAction.java 
+	\- 현재 날짜를 리턴한다.
+
+```java
+package action; 
+
+import javax.servlet.http.HttpServletRequest; 
+import javax.servlet.http.HttpServletResponse; 
+
+import java.util.Date; 
+
+public class DateAction implements Action { 
+   
+  public String execute( 
+    HttpServletRequest request, 
+    HttpServletResponse response) 
+  throws Throwable { 
+    CommandService commandService= new CommandService(); 
+     
+    String str = commandService.getDate(); 
+     
+    // 가져온 날짜 문자열을 request 객체에 저장 
+    request.setAttribute("date", str); 
+     
+    System.out.println("DateAction Loading");     
+     
+    // Context Path을 제거한 경로 지정 
+    return "/view/date.jsp"; 
+  } 
+} 
+
+
+```
+
+
+
+
+\>>> NullAction.java 
+	\- 아무런 명령어도 일치하지 않으면 생성되는 클래스다.
+
+```java
+package action; 
+
+import javax.servlet.ServletException; 
+import javax.servlet.http.HttpServletRequest; 
+import javax.servlet.http.HttpServletResponse; 
+
+public class NullAction implements Action { 
+
+  public String execute( 
+    HttpServletRequest request, 
+    HttpServletResponse response) 
+  throws ServletException { 
+
+    System.out.println("NullAction Loading"); 
+     
+    // Context Path을 제거한 경로 지정 
+    return "/view/nullCommand.jsp"; 
+  } 
+} 
+```
+
+
+
+### [2] MVC의 구현(Controller, config, web.xml) 

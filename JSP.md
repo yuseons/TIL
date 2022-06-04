@@ -98,6 +98,8 @@
 
   [3] Cookie
 
+
+
 ## ◻ JSP 기초문법
 
 - WEB 환경에서 JAVA를 이용한 DBMS 접근을 처리
