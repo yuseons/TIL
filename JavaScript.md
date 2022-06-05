@@ -584,3 +584,42 @@ var name = prompt("이름을 입력하세요", "홍길동"); //초기값 설정 
 ```javascript
 var ret = confirm("입력한 값이 맞습니까?");
 ```
+
+
+
+## ◻ 별도의 CSS 파일을 만들고 HTML 문서와 연결하기
+
+- Style Sheet을 별도로 만들고 HTML문서와 연결
+
+  1. style.css 파일을 만든다
+
+     ```
+     h1 {
+       color: red;
+     }
+     ```
+
+  2. HTML문서에 코드를 추가한다
+
+     ````
+     <link rel="stylesheet" href="style.css">
+     ````
+
+     - href ="파일이 있는 경로"
+
+       ​		="style.css" : HTML와 CSS가 같은 폴더 내에 있을 경우
+
+       ​		="css/style.css" : HTML이 있는 폴더 안에 CSS라는 폴더가 있고, 그 CSS 폴더 									  안에 style.css가 있을 경우
+
+       ​		="../style.css" : HTML이 있는 폴더의 밖에 style.css가 있는 경우
+
+## ◻ document 객체
+
+
+- HTML 요소를 객체 형태로 접근할 수 있도록 해준다 
+
+  ex) document.body  : <body>요소를 반환 
+
+  ​      document.forms : <form>요소를 모두 반환 
+
+- HTML 요소와 관련된 작업을 도와주는 다양한 메소드를 제공한다
