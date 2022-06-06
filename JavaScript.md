@@ -833,3 +833,184 @@ encodeURIComponent("가나다")  //   %EA%B0%80%EB%82%98%EB%8B%A4
 decodeURIComponent("%3B%2C%2F%3F%3A%40%26%3D%2B%24")  //  ;,/?:@&=+$
 decodeURIComponent("%EA%B0%80%EB%82%98%EB%8B%A4")     //  가나다
 ```
+
+
+
+## ◻ Math의 함수
+
+- Math.round() : 입력값을 반올림한 수와 가장 가까운 정수 값으로 반환
+
+- Math.pow(base, exponent) : `base^exponent` ( base에 exponent를 제곱한 값) 을 반환
+
+  - base : 밑 값
+
+  - exponent : 밑 을 제곱하기 위해 사용하는 지수
+
+## ◻ 클로저
+ \- 함수 안에 선언된 변수는 지역변수 이므로 함수 외부에서 사용할 수 없다.
+ \- 클로저는 위 규칙을 위반할 수 있다.
+ \- 흔히 함수 내에서 함수를 정의하고 사용하면 클로저라고 할 수 있다.
+ \- 정의한 함수를 리턴하고 사용은 바깥에서 한다. 
+
+```javascript
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        // 함수를 선언합니다.
+        function test(name) {
+            var output = 'Hello ' + name + ' .. !';
+        }
+ 
+        // 출력합니다.(호출안됨)
+        alert(output);
+    </script>
+</head>
+<body>
+ 
+</body>
+</html>
+
+---------------------------------------------------------------------------------
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        // 함수를 선언합니다.
+        function test(name) {
+             let output = `Hello ${name} ...!`;
+ 
+             return function() {
+                   console.log(output);
+              };
+        }
+ 
+        // 출력합니다. 호출됨
+        test('JavaScript')();
+    </script>
+</head>
+<body>
+ 
+</body>
+</html>
+```
+
+## ◻ 중첩함수와 자기호출 익명함수
+
+### [1] 중첩 함수 
+​	: **함수 내부에 정의된 함수**를 중첩 함수 또는 내부 함수라고 한다
+
+- 중첩 함수를 포함하는 함수는 외부 함수라 부른다.
+
+- 중첩 함수는 자신을 포함하는 **외부 함수**를 돕는 **헬퍼함수의 역할**을 한다.
+
+- 중첩함수는 외부함수의 변수에 접근가능하다.
+
+- 함수 선언문의 경우 if 문이나 for문 등의 코드 블록 내에서도 정의 가능하지만 호이스팅으로 인해 혼란이 발생할 수 있으므로 바람직하지 않다.
+
+- 중첩 함수는 스코프와 클로저와 깊은 관련이 있다는 것을 기억
+
+  
+
+```javascript
+<script>
+function outer(){ // 외부 함수
+  const x = 1;
+  // 중첩 함수, 내부함수
+  function inner (){// 외부 함수를 돕는 헬퍼 함수 역할
+   // 외부 함수의 변수를 참조할 수 있음
+    const y = 3
+   console.log(x + y);
+  }
+  inner()
+}
+outer()
+</script>
+```
+
+
+
+### [2] 자기호출 익명함수
+
+- 익명함수 : 말그대로 함수의 이름이 없는 함수를 말합니다. 
+- 자기호출 익명함수 :  말그대로 자기 스스로를 호출한다는 의미입니다
+
+
+```javascript
+//익명함수
+function () {
+...
+}
+
+// 소괄호를 사용한 자기호출 익명함수
+
+(function (a){
+ ...
+})('Hello')
+
+//--------------------------------
+
+(function (a){
+ ...
+}('Hello'))
+```
+
+
+
+
+  \- 아래 중첩함수 예제의 문제를 익명의 자기 호출 함수로 해결할 수 있다.
+
+```javascript
+<!DOCTYPE html>
+<html>
+<body>
+ 
+<p>Counting with a local variable.</p>
+ 
+<button type="button" onclick="myFunction()">Count!</button>
+ 
+<p id="demo">0</p>
+ 
+<script>
+function add() {
+    var counter = 0;
+    function plus() {counter += 1;}
+    plus();    
+    return counter; 
+}
+ 
+function myFunction(){
+    document.getElementById("demo").innerHTML = add();
+}
+</script>
+ 
+</body>
+</html>
+
+--------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html>
+<body>
+ 
+<p>Counting with a local variable.</p>
+ 
+<button type="button" onclick="myFunction()">Count!</button>
+ 
+<p id="demo">0</p>
+ 
+<script>
+var add = (function () {
+    var counter = 0;
+    return function () {return counter += 1;}
+})();
+ 
+function myFunction(){
+    document.getElementById("demo").innerHTML = add();
+}
+</script>
+ 
+</body>
+</html>
+```
+
