@@ -103,7 +103,7 @@
 
  \- **각각의 계층이나 서비스들 간에 의존성이 존재할 경우 프레임워크가 자동으로 관리**한다.
 
-  ![DI]())
+  ![DI](https://github.com/yuseons/TIL/blob/master/image/DI.jpg))
 
  
 
@@ -127,7 +127,7 @@
 
 
 
-  ![AOP]()
+  ![AOP](https://github.com/yuseons/TIL/blob/master/image/AOP.jpg)
 
  ####  5. 컨테이너
 
