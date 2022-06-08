@@ -213,14 +213,14 @@
 
 
 
+
+- SamsungTV와 LgTV의 시청에 필요한 필수 기능 네개가 있다.
+
+- TVUser 클래스에서 두개 TV클래스를 사용하면 두 클래스의 메소드 원형이 다르기 때문에 TV 교체시 다 변경해야 하므로 유지보수가 힘들어 지고, TV교체를 결정하기 쉽지 않다.
+
 ```java
-/*
-SamsungTV와 LgTV의 시청에 필요한 필수 기능 네개가 있다.
-
-TVUser 클래스에서 두개 TV클래스를 사용하면 두 클래스의 메소드 원형이 다르기 때문에 TV 교체시 다 변경해야 하므로 유지보수가 힘들어 지고, TV교체를 결정하기 쉽지 않다.
-*/
-
 // SamsungTV.java
+
 package coupling;
  
 public class SamsungTV {
@@ -238,8 +238,10 @@ public class SamsungTV {
         }
         
 }
- 
+```
+```java
 // LgTV.java
+
 package coupling;
  
 public class LgTV {
@@ -256,8 +258,10 @@ public class LgTV {
                 System.out.println("LgTV.....소리 내린다.");
         }
 }
- 
+```
+```java
 // TVUser
+
 package coupling;
  
 public class TVUser {
@@ -288,12 +292,13 @@ public class TVUser {
 
 
 
-![TV]())
+![TV](https://github.com/yuseons/TIL/blob/master/image/TV.jpg))
 
 \>> 결합도 높은 위의 예제를 수정한다.
 
 ```java
 // TV.java
+
 package polymorphism;
  
 public interface TV {
@@ -302,8 +307,10 @@ public interface TV {
    void volumeUp();
    void volumeDown();
 }
-
+```
+```java
 // SamsungTV.java
+
 package polymorphism;
  
 public class SamsungTV implements TV {
@@ -324,8 +331,10 @@ public class SamsungTV implements TV {
     System.out.println("SamsungTV.....소리 내린다.");
   }
 }
-
+```
+```java
 // LgTV.java
+
 package polymorphism;
  
 public class LgTV implements TV {
@@ -347,8 +356,10 @@ public class LgTV implements TV {
   }
  
 }
-
+```
+```java
 // TVUser.java
+
 package polymorphism;
  
 public class TVUser {
@@ -377,7 +388,7 @@ public class TVUser {
 
 
 
-![tv2]()
+![tv2](https://github.com/yuseons/TIL/blob/master/image/TV2.jpg)
 
 - TV를 교체할 때, 클라이언트 소스(TVUser.java)를 수정하지 않고 
 
@@ -391,6 +402,7 @@ public class TVUser {
 
 ```java
 // TV.java
+
 package factory;
  
 public interface TV {
@@ -399,8 +411,10 @@ public interface TV {
    void volumeUp();
    void volumeDown();
 }
-
+```
+```java
 // SamsungTV.java
+
 package factory;
  
 public class SamsungTV implements TV {
@@ -421,8 +435,10 @@ public class SamsungTV implements TV {
     System.out.println("SamsungTV.....소리 내린다.");
   }
 }
-
+```
+```java
 // LgTV.java
+
 package factory;
  
 public class LgTV implements TV {
@@ -444,8 +460,10 @@ public class LgTV implements TV {
   }
  
 }
-
+```
+```java
 // BeanFactory.java
+
 package factory;
  
 public class BeanFactory {
@@ -458,10 +476,10 @@ public class BeanFactory {
     return null;
   }
 }
- 
-
-
+```
+```java 
 // TVUser.java
+
 package factory;
  
 public class TVUser {
@@ -498,10 +516,11 @@ public class TVUser {
 
 
 
-![TV3]()
+![TV3](https://github.com/yuseons/TIL/blob/master/image/TV3.jpg)
 
-    ```java
+```java
     // TV.java
+    
     package ioc;
      
     public interface TV {
@@ -510,17 +529,18 @@ public class TVUser {
        void volumeUp();
        void volumeDown();
     }
-    
-    
+```
+```java
     // SamsungTV.java
+    
     package ioc;
      
     public class SamsungTV implements TV {
     
       public SamsungTV() {
-        System.out.println(">>>SamsungTV 객체 생성");
-      }
-     
+       System.out.println(">>>SamsungTV 객체 생성");
+     }
+    
       public void powerOn() {
         System.out.println("SamsungTV.....전원 켠다.");
       }
@@ -537,9 +557,10 @@ public class TVUser {
         System.out.println("SamsungTV.....소리 내린다.");
       }
     }
-    
-    
+```
+```java 
     // LgTV.java
+
     package ioc;
      
     public class LgTV implements TV {
@@ -564,10 +585,10 @@ public class TVUser {
       }
      
     }
-    
-    
-    
+```
+```java
     // com.example.demo.TVConfig.java
+
     package com.example.demo;
      
     import org.springframework.context.annotation.Bean;
@@ -585,19 +606,17 @@ public class TVUser {
             
             return tv;
         }
-        
         @Bean(name="samsung")
         public TV SamsungCreate() {
      
              return new SamsungTV();
         }
-        
-     
+    
     }
-    
-    
-    
+```
+```java 
     // HelloAppApplication .java
+
     package com.example.demo;
      
     import org.springframework.boot.SpringApplication;
@@ -635,7 +654,5 @@ public class TVUser {
             }
      
     }
-     
-    
-    ```
+```
 
