@@ -150,3 +150,492 @@
 \- 의존성 관리가 힘들다
 
 \- 배포가 어렵다
+
+
+
+## ◻ Spring Boot
+
+\-	스프링은 다양한 기술들을 구현하기 위해 사용할 라이브러리가 많아졌고 그에 따라 관련
+ 설정이 더욱 복잡해졌다. 
+
+ 이런 이유로 스프링을 처음 시작하는 사람들 대부분이 스프링의 복잡하고 방대한 설정
+ 에 대해 부담을 느끼는 경우가 많다.
+
+ 복잡한 설정은 필연적으로 오류를 발생할 가능성이 높다. 
+
+ 기존 스프링을 통한 개발의 이런 문제점을 해결하기 위해 스프링 부트가 탄생했다.
+
+ 기존 스프링이 학습에 어려움이 있기에 쉽게 배울 수 있도록 개발된 것이 스프링 부트
+ 이다.
+
+
+
+\- 스프링 부트는 스프링을 쉽게 사용할 수 있도록 필요한 여러 가지 복잡한 설정을 대부분 미리 세팅 해놓았을 뿐만 아니라 WAS도 별도의 설정 없이 바로 웹 개발에 들어갈 수 있도록 해준다. 
+
+\- 개발자가 일일이 모든 설정을 할 필요 없이 자주 사용되는 기본 설정을 알아서 해준다. 
+
+
+
+### 스프링 부트의 특징
+-  웹서버를 내장하고 있어 복잡한 외적인 환경 설정과 실행을 간소화 했다.
+    따라서, 직접적인 개발과 상관이 적은 개발환경 설정보다는 개발 자체에 더 집중
+    할 수 있다. 
+
+- 스프링 부트로 프로젝트 생성을 위해 제공하는 스타터는 필요한 라이브러리들을 관련된 것끼리 묶어서 패키지를 제공한다.
+
+- 스프링 부트가 자동으로 관련된 라이브러리들을 다운로드하고 라이브러리 사이의
+    의존성을 문제를 해결한다.
+
+- 모든 빈( Bean)설정은 XML 이 아닌 어노테이션(annotation) 으로 처리한다.
+
+- 기본으로 고정적인 환경 설정 값을 제공하지만, 설정값을 변경하고 싶다면 유연하고 신속하게 변경할 수 있다.
+- 프로젝트의 커다란 클래스들에 공통적인 비-함수적(non-functional) 기능의 범위를 제공한다.
+  - 임베디드 서버, 시큐리티, 매트릭스, 모니터링, 외부로 노출된 환경 설정값들이 이에 해당한다.
+- XML 설정이 전혀 필요 없으며 어떠한 코드도 생성하지 않아도 된다.
+
+
+
+## ◻ IoC(Invesion of Control)컨테이너
+
+\- 서블릿 컨테이너를 통해 스프링컨테이너의 동작방식을 유추한다.
+
+
+
+ ## ◻ 클래스 유형
+
+
+
+### [1] 결합도(Coupling)가 높은 클래스
+
+\- 결합도란 하나의 클래스가 다른 클래스와 얼마나 많이 연결되어 있는지를 나타내는 표현이며, 
+
+  결합도가 높은 프로그램은 유지 보수가 어렵다.
+
+
+
+```java
+/*
+SamsungTV와 LgTV의 시청에 필요한 필수 기능 네개가 있다.
+
+TVUser 클래스에서 두개 TV클래스를 사용하면 두 클래스의 메소드 원형이 다르기 때문에 TV 교체시 다 변경해야 하므로 유지보수가 힘들어 지고, TV교체를 결정하기 쉽지 않다.
+*/
+
+// SamsungTV.java
+package coupling;
+ 
+public class SamsungTV {
+        public void powerOn() {
+                System.out.println("SamsungTV.....전원 켠다.");
+        }
+        public void powerOff() {
+                System.out.println("SamsungTV.....전원 끈다.");
+        }
+        public void volumeUp() {
+                System.out.println("SamsungTV.....소리 올린다.");
+        }
+        public void volumeDown() {
+                System.out.println("SamsungTV.....소리 내린다.");
+        }
+        
+}
+ 
+// LgTV.java
+package coupling;
+ 
+public class LgTV {
+        public void turnOn() {
+                System.out.println("LgTV.....전원 켠다.");
+        }
+        public void turnOff() {
+                System.out.println("LgTV.....전원 끈다.");
+        }
+        public void soundUp() {
+                System.out.println("LgTV.....소리 올린다.");
+        }
+        public void soundDown() {
+                System.out.println("LgTV.....소리 내린다.");
+        }
+}
+ 
+// TVUser
+package coupling;
+ 
+public class TVUser {
+ 
+        public static void main(String[] args) {
+                SamsungTV  tv = new SamsungTV();
+                tv.powerOn();
+                tv.powerOff();
+                tv.volumeUp();
+                tv.volumeDown();
+                
+                LgTV tv2 = new LgTV();
+                tv2.turnOn();
+                tv2.turnOff();
+                tv2.soundUp();
+                tv2.soundDown();
+        }
+}
+```
+
+
+
+### [2] 다형성 이용
+
+\- 결합도를 낮추기 위해서 객체지향 언어의 핵심 개념인 다형성(Polymorphism)을 이용한다. 
+
+\- 다형성을 이용하려면 상속과 메소드 재정의(Overriding), 형변환이 필요하다.
+
+
+
+![TV]())
+
+\>> 결합도 높은 위의 예제를 수정한다.
+
+```java
+// TV.java
+package polymorphism;
+ 
+public interface TV {
+   void powerOn() ;
+   void powerOff();
+   void volumeUp();
+   void volumeDown();
+}
+
+// SamsungTV.java
+package polymorphism;
+ 
+public class SamsungTV implements TV {
+ 
+  public void powerOn() {
+    System.out.println("SamsungTV.....전원 켠다.");
+  }
+ 
+  public void powerOff() {
+    System.out.println("SamsungTV.....전원 끈다.");
+  }
+ 
+  public void volumeUp() {
+    System.out.println("SamsungTV.....소리 올린다.");
+  }
+ 
+  public void volumeDown() {
+    System.out.println("SamsungTV.....소리 내린다.");
+  }
+}
+
+// LgTV.java
+package polymorphism;
+ 
+public class LgTV implements TV {
+ 
+  public void powerOn() {
+    System.out.println("LgTV.....전원 켠다.");
+  }
+ 
+  public void powerOff() {
+    System.out.println("LgTV.....전원 끈다.");
+  }
+ 
+  public void volumeUp() {
+    System.out.println("LgTV.....소리 올린다.");
+  }
+ 
+  public void volumeDown() {
+    System.out.println("LgTV.....소리 내린다.");
+  }
+ 
+}
+
+// TVUser.java
+package polymorphism;
+ 
+public class TVUser {
+ 
+  public static void main(String[] args) {
+    TV  tv = new SamsungTV();
+    tv.powerOn();
+    tv.powerOff();
+    tv.volumeUp();
+    tv.volumeDown();
+ 
+    TV  tv2 = new LgTV();
+    tv2.powerOn();
+    tv2.powerOff();
+    tv2.volumeUp();
+    tv2.volumeDown();
+  }
+}
+```
+
+
+
+### [3] 디자인 패턴 이용
+
+\- 결합도를 낮추는 또 하나의 방법으로 디자인패턴을 이용할 수 있다.
+
+
+
+![tv2]()
+
+- TV를 교체할 때, 클라이언트 소스(TVUser.java)를 수정하지 않고 
+
+  TV를 교체 한다면 유지 보수는 더욱 편해진다.
+
+- Factory패턴을 적용하여, 클라이언트에서 사용할 객체 생성을 캡슐화하여
+
+  TVUser와 TV 사이를 느슨한 결합 상태로 만들어준다.
+
+
+
+```java
+// TV.java
+package factory;
+ 
+public interface TV {
+   void powerOn() ;
+   void powerOff();
+   void volumeUp();
+   void volumeDown();
+}
+
+// SamsungTV.java
+package factory;
+ 
+public class SamsungTV implements TV {
+ 
+  public void powerOn() {
+    System.out.println("SamsungTV.....전원 켠다.");
+  }
+ 
+  public void powerOff() {
+    System.out.println("SamsungTV.....전원 끈다.");
+  }
+ 
+  public void volumeUp() {
+    System.out.println("SamsungTV.....소리 올린다.");
+  }
+ 
+  public void volumeDown() {
+    System.out.println("SamsungTV.....소리 내린다.");
+  }
+}
+
+// LgTV.java
+package factory;
+ 
+public class LgTV implements TV {
+ 
+  public void powerOn() {
+    System.out.println("LgTV.....전원 켠다.");
+  }
+ 
+  public void powerOff() {
+    System.out.println("LgTV.....전원 끈다.");
+  }
+ 
+  public void volumeUp() {
+    System.out.println("LgTV.....소리 올린다.");
+  }
+ 
+  public void volumeDown() {
+    System.out.println("LgTV.....소리 내린다.");
+  }
+ 
+}
+
+// BeanFactory.java
+package factory;
+ 
+public class BeanFactory {
+  public static TV getBean(String beanName) {
+    if(beanName.equals("samsung")) {
+      return new SamsungTV();
+    }else if(beanName.equals("lg")) {
+      return new LgTV();
+    }
+    return null;
+  }
+}
+ 
+
+
+// TVUser.java
+package factory;
+ 
+public class TVUser {
+ 
+  public static void main(String[] args) {
+    TV  tv = BeanFactory.getBean(args[0]);
+    tv.powerOn();
+    tv.powerOff();
+    tv.volumeUp();
+    tv.volumeDown();
+ 
+  }
+}
+```
+
+
+
+### [4] 스프링 IoC 이용
+
+- Ioc 컨테이너는 각 컨테이너에서 관리할 객체들를 위한 별도의 설정클래스(TVConfig.java)를 사용한다.
+
+- 설정클래스는 HelloAppApplication 클래스와 같은 패키지에 만든다.
+  - HelloAppApplication 클래스는 시작 클래스이며, 프로젝트가 시작될때
+     설정클래스에서 생성된 빈을 가져와 사용한다. 
+
+
+
+- `@Configuration` 어노테이션이 붙은 클래스는 스프링 설정으로 사용됨을
+  의미한다.
+
+- `@Bean` 어노테이션이 붙은 메서드의 리턴값은 빈 객체로 사용됨을 의미한다.
+- `@Bean(name="samsung")`은 빈으로 등록될 빈의 이름을 지정한다.
+   별도이 이름을 지정하지 않으면 메서드 이름이 빈의 이름으로 등록된다.
+
+
+
+![TV3]()
+
+    ```java
+    // TV.java
+    package ioc;
+     
+    public interface TV {
+       void powerOn() ;
+       void powerOff();
+       void volumeUp();
+       void volumeDown();
+    }
+    
+    
+    // SamsungTV.java
+    package ioc;
+     
+    public class SamsungTV implements TV {
+    
+      public SamsungTV() {
+        System.out.println(">>>SamsungTV 객체 생성");
+      }
+     
+      public void powerOn() {
+        System.out.println("SamsungTV.....전원 켠다.");
+      }
+     
+      public void powerOff() {
+        System.out.println("SamsungTV.....전원 끈다.");
+      }
+     
+      public void volumeUp() {
+        System.out.println("SamsungTV.....소리 올린다.");
+      }
+     
+      public void volumeDown() {
+        System.out.println("SamsungTV.....소리 내린다.");
+      }
+    }
+    
+    
+    // LgTV.java
+    package ioc;
+     
+    public class LgTV implements TV {
+    
+      public LgTV() {
+        System.out.println(">>>> LgTV 객체 생성");
+      }
+      public void powerOn() {
+        System.out.println("LgTV.....전원 켠다.");
+      }
+     
+      public void powerOff() {
+        System.out.println("LgTV.....전원 끈다.");
+      }
+     
+      public void volumeUp() {
+        System.out.println("LgTV.....소리 올린다.");
+      }
+     
+      public void volumeDown() {
+        System.out.println("LgTV.....소리 내린다.");
+      }
+     
+    }
+    
+    
+    
+    // com.example.demo.TVConfig.java
+    package com.example.demo;
+     
+    import org.springframework.context.annotation.Bean;
+    import org.springframework.context.annotation.Configuration;
+     
+    import ioc.LgTV;
+    import ioc.SamsungTV;
+    import ioc.TV;
+     
+    @Configuration  
+    public class TVConfig {
+        @Bean
+        public TV lgCreate() {
+            LgTV tv = new LgTV();
+            
+            return tv;
+        }
+        
+        @Bean(name="samsung")
+        public TV SamsungCreate() {
+     
+             return new SamsungTV();
+        }
+        
+     
+    }
+    
+    
+    
+    // HelloAppApplication .java
+    package com.example.demo;
+     
+    import org.springframework.boot.SpringApplication;
+    import org.springframework.boot.autoconfigure.SpringBootApplication;
+    import org.springframework.context.ApplicationContext;
+    import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+     
+    import ioc.SamsungTV;
+    import ioc.TV;
+     
+    @SpringBootApplication
+    public class HelloAppApplication {
+     
+            public static void main(String[] args) {
+                    SpringApplication.run(HelloAppApplication.class, args);
+                    
+                    // 추가적인 입력 부분
+                    // 1.IoC 컨테이너 생성
+                    ApplicationContext context =
+                            new AnnotationConfigApplicationContext(TVConfig.class);
+                    
+                   // 2.LgTV Bean 가져오기
+                    TV lg = (TV)context.getBean("lgCreate");
+                    lg.powerOn();
+                    lg.volumeUp();
+                    lg.volumeDown();
+                    lg.powerOff();
+                
+                    // 3.SamsungTV Bean 가져오기
+                    TV samsung = (TV)context.getBean("samsung", SamsungTV.class);
+                    samsung.powerOn();
+                    samsung.volumeUp();
+                    samsung.volumeDown();
+                    samsung.powerOff();
+            }
+     
+    }
+     
+    
+    ```
+
