@@ -197,7 +197,38 @@
 
 ## ◻ IoC(Invesion of Control)컨테이너
 
-\- 서블릿 컨테이너를 통해 스프링컨테이너의 동작방식을 유추한다.
+: 객체를 생성하고 관리하고 책임지고 의존성을 관리해주는 컨테이너
+
+\- 인스턴스 생성부터 소멸까지의 인스턴스 생명주기 관리를 개발자가 아닌 컨테이너가 대신 해준다.
+
+\- 객체관리 주체가 프레임워크(Container)가 되기 때문에 개발자는 로직에 집중할 수 있다.
+
+
+
+### [1] IoC의 분류
+
+- DL(Dependency Lookup) : 저장소에 저장되어 있는 Bean에 접근하기 위해 컨테이너가 제공하는 API를 이용하여 Bean을 Lockup한다.
+- DI (Dependency Injection) : 각 클래스간의 의존관계를 빈 설정(Bean Definition) 정보를 바탕으로 컨테이너가 자동으로 연결해준다.
+  - Setter Injection (수정자 주입)
+  - Constructor Injection (생성자 주입)
+  - Method Injection (필드 주입)
+
+
+
+
+### [2] IoC 컨테이너의 종류
+
+\- IoC 컨테이너(스프링 컨테이너)가 관리하는 객체를 빈(Bean)이라고 하고, 
+
+  이 빈들을 관리한다는 의미로 컨테이너를 빈 팩토리(BeanFactory) 라고 부른다.
+
+\- 객체의 생성과 객체 사이의 런타임 관계를 DI 관점에서 볼 때 컨테이너를 BeanFactory라고 한다.
+
+\- BeanFactory에 여러가지 컨테이너 기능을 추가한 애플리케이션컨텍스트(ApplicationContext) 가 있다.
+
+
+
+![img](https://blog.kakaocdn.net/dn/x4WUU/btq9gXndYek/CwB8xqIdfQh1ox2P9H6bV1/img.png)
 
 
 
