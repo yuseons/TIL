@@ -713,18 +713,11 @@ public class TVUser {
   - 의존성 옵션
 
     - implementation : 의존 라이브러리 수정시 본 모듈까지만 재빌드(재컴파일)
-
-    - api : 의존 라이브러리 수정시 본 모듈을 의존하는 모듈들도 재빌드(재컴파일)
-
-    - compileOnly : compile 시에만 빌드하고 빌드 결과물에는 포함하지 않음
-
-          ​runtime 시 필요없는 라이브러리인 경우 (runtime 환경에 이미 라이브러리 제공되고 있는가 하는 등의 경우)
-    
-    - runtimeOnly : runtime 시에만 필요한 라이브러리인 경우
-    
+  - api : 의존 라이브러리 수정시 본 모듈을 의존하는 모듈들도 재빌드(재컴파일)
+    - compileOnly : compile 시에만 빌드하고 빌드 결과물에는 포함하지 않음. runtime 시 필요없는 라이브러리인 경우 (runtime 환경에 이미 라이브러리 제공되고 있는가 하는 등의 경우)
+  - runtimeOnly : runtime 시에만 필요한 라이브러리인 경우
     - providedRuntime : 실행시 제공되는 library
-    
-    - testImplementation : 테스트시 관련 library 제공
+  - testImplementation : 테스트시 관련 library 제공
 
 
 
