@@ -687,3 +687,112 @@ public class TVUser {
     }
 ```
 
+
+
+## ◻ 스프링 부트 프로젝트의 주요 파일 및 구조
+
+- src/main/java :  자바소스 폴더
+
+- SampleApplication : 애플리케이션을 시작할 수 있는 main메소드가 존재하는 스프링 구성 메인 클래스
+
+- src/main/resources/static :  HTML, 스타일 시트, 자바스크립트, 이미지 등의 정적 리소스 폴더
+
+- application.properties  : 애플리케이션 및 스프링의 설정 등에서 사용할 여러 가지 프로퍼티 (property)정의
+
+- Project and External Dependencies : Gradle에 명시된 프로젝트의 필수 라이브러리 모음
+
+- src : JSP등 리소스 디렉토리
+
+- build.gradle
+  \- Gradle 빌드 명세, 프로젝트에 필요한 라이브러리 관리, 빌드 배포 설정
+
+  \- 스프링 부트의 버전을 명시
+
+  \- 자바 버전 명시
+
+  - 의존성 옵션
+
+    - implementation : 의존 라이브러리 수정시 본 모듈까지만 재빌드(재컴파일)
+
+    - api : 의존 라이브러리 수정시 본 모듈을 의존하는 모듈들도 재빌드(재컴파일)
+
+    -  compileOnly : compile 시에만 빌드하고 빌드 결과물에는 포함하지 않음
+
+        					  ​						 \- runtime 시 필요없는 라이브러리인 경우 (runtime 환경에 이미 라이브러리 제공되고 있는가 하는 등의 경우)
+    - runtimeOnly : runtime 시에만 필요한 라이브러리인 경우
+
+    - providedRuntime : 실행시 제공되는 library
+
+    - testImplementation : 테스트시 관련 library 제공
+
+
+
+## ◻ Annotation
+
+- Annotation은 **클래스와 메서드**에 추가하여 **다양한 기능**을 부여하는 역할을 한다.
+
+- Annotation을 활용하여 Spring Framework는 해당 클래스가 어떤 역할인지 정하기도 하고, 
+
+  Bean을 주입하기도 하며, 자동으로 getter나 setter를 생성하기도 한다. 
+
+- 특별한 의미를 부여하거나 기능을 부여하는 등 다양한 역할을 수행한다.
+
+- **코드량이 감소하고 유지 보수하기 쉬우며, 생산성이 증가**된다.
+
+
+
+### @Component
+  - 개발자가 생성한 Class를 Spring의 Bean으로 등록할 때 사용한다.
+  - Spring은 해당 Annotation을 보고 Spring의 Bean으로 등록한다.
+
+
+### @ComponentScan
+
+  - 컴포넌트 클래스를 검색하고 검색된 컴포넌트 및 클래스를 스프링 애플리케이션 컨텍스트에 등록한다.
+  - Spring Framework는 @Component, @Service, @Repository, @Controller, @Configuration 중 1개라도 등록된 클래스를 찾으면, Context에 bean으로 등록한다.
+
+
+### @Bean
+  - 개발자가 제어가 불가능한 외부 라이브러리와 같은 것들을 Bean으로 만들 때 사용한다.
+
+
+### @Controller
+  - Spring에게 해당 Class가 Controller의 역할을 한다고 명시할떄 사용한다.
+
+### @RequestHeader
+
+- Request의 header값을 컨트롤러 메서드의 파라미터로 전달한다.
+- 메서드 파라미터가 String가 아니라면 타입변환을 자동으로 적용한다.
+- 헤더가 존재하지 않으면 에러가 발생한다.
+- required 속성을 이용해 필수여부를 설정할 수 있다.
+- defaultValue 속성을 이용해 기본 값을 설정할 수 있다.
+### @RequestMapping
+
+- ` @RequestMapping(value=”“) `
+- URI의 요청과 Annotation value 값이 일치하면 해당 클래스나 메소드가 실행된다.
+- Class 단위에 사용하면 하위 메소드에 모두 적용된다.
+- 메소드에 적용되면 해당 메소드에서 지정한 방식으로 URI를 처리한다.
+
+### @RequestParam
+
+- URL파라미터로 전달받은 value를 메서드의 파라미터로 받을 수 있게 해준다.
+- 메소드의 파라미터값으로 @RequestParam을 넣어주면된다.
+
+### @RequestBody
+
+- 클라이언트가 보내는 HTTP 요청 본문(JSON 및 XML 등)을 Java 오브젝트로 변환한다.
+- HTTP 요청 본문 데이터는 Spring에서 제공하는 HttpMessageConverter를 통해 타입에 맞는 객체로 변환된다.
+
+### @ModelAttribute
+
+- 클라이언트가 보내는 HTTP 파라미터들을 특정 Java Object에 바인딩(맵핑) 한다.
+- `/modelattribute?name=req&age=1` 같은 Query String 형태 혹은 요청 본문에 삽입되는 Form 형태의 데이터를 처리한다.
+- @RequestBody가 json을 받는 것과 달리 @ModenAttribute 의 경우에는 json을 받아 처리할 수 없다.
+
+### @ResponseBody
+
+- @ResponseBody은 메소드에서 리턴되는 값이 View 로 출력되지 않고 HTTP요청의 바디내용으로 매핑하여 클라이언트로 전송한다. 
+
+- @ResponseBody 가 붙은 파라미터가 있으면 HTTP요청의 미디어타입과 파라미터의 타입을 먼저 확인한다.
+
+- return 시에 json, xml과 같은 데이터를 return한다.
