@@ -832,4 +832,4 @@ public class TVUser {
 #### [3]@PostMapping
 - @PostMapping은  **주소에 파라미터가 노출되지 않는다.**
 
-![get,post]()
+![get,post](https://github.com/yuseons/TIL/blob/master/image/get%2Cpost.png)
