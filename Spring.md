@@ -790,3 +790,46 @@ public class TVUser {
 - @ResponseBody 가 붙은 파라미터가 있으면 HTTP요청의 미디어타입과 파라미터의 타입을 먼저 확인한다.
 
 - return 시에 json, xml과 같은 데이터를 return한다.
+
+
+
+### @Autowired
+- 스프링 DI에서 사용되는 어노테이션이다.
+- 의존성 주입을 할 때 사용하는 Annotation으로 의존 객체의 타입에 해당하는 bean을 찾아 주입하는 역할을 한다.
+- @Autowired는 필드, 생성자, Setter에 붙일 수 있다.
+  - 단, @Autowired를 필드, Setter에 붙여서 사용할 경우 반드시 기본 생성자가 정의되어 있어야 한다.
+- 스프링에서 Bean 인스턴스가 생성된 이후 @Autowired를 설정한 메서드가 자동으로 호출되고, 인스턴스가 자동으로 주입된다.
+- Spring Framework가 Class를 보고 Type에 맞게(Type을 먼저 확인 후, 없으면 Name 확인) Bean을 주입한다.
+
+- @Type을 통한 주입
+
+  - @Autowired 가 Type으로 찾아서 주입하므로 동일한 Bean 타입의 객체가 여러개 있을 경우, Bean을 찾기 위해 @Qualifier 어노테이션을 같이 사용해야 한다.
+- <context:component scan > 태그
+    - @Autowired로 의존 관계를 주입받을 경우, 해당 클래스 (@Autowired당하는 클래스) 를 반드시 Component Auto Scanning을 설정해야 한다
+    - Component Auto Scanning 코드
+
+
+```
+<context:component-scan base-package="factory.userfactory" />
+```
+
+
+
+### - @RequestMapping , @GetMapping , @PostMapping
+
+#### [1] @RequestMapping
+
+- 클래스와 메서드 모두에서 사용한다.
+  - 대부분의 경우 메소드 레벨에서 애플리케이션은 HTTP 메소드 특정 변형 @GetMapping, @PostMapping, @PutMapping, @DeleteMapping 또는 @PatchMapping 중 하나를 사용하는 것을 선호한다.
+
+
+#### [2] @GetMapping 
+
+- 메소드에만 사용한다.
+- HTTP GET 요청을 특정 핸들러 메소드에 맵핑하기위한 Annotation으로, **주소에 파라미터가 노출 된다. **
+
+
+#### [3]@PostMapping
+- @PostMapping은  **주소에 파라미터가 노출되지 않는다.**
+
+![get,post]()
