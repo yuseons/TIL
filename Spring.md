@@ -739,6 +739,7 @@ public class TVUser {
   - 개발자가 생성한 Class를 Spring의 Bean으로 등록할 때 사용한다.
   - Spring은 해당 Annotation을 보고 Spring의 Bean으로 등록한다.
 
+`@Component("TV")`: 컨테이너가 객체를 생성 해준다. Bean 이름은 TV로 등록된다.
 
 ### @ComponentScan
 
@@ -753,6 +754,10 @@ public class TVUser {
 ### @Controller
   - Spring에게 해당 Class가 Controller의 역할을 한다고 명시할떄 사용한다.
 
+### @Qualifier
+
+- 동일한 인터페이스를 구현한 클래스가 여러개 있는 경우 이름을 지정하여 명확하게 클래스를 인식할 수 있다.
+
 ### @RequestHeader
 
 - Request의 header값을 컨트롤러 메서드의 파라미터로 전달한다.
@@ -763,7 +768,7 @@ public class TVUser {
 ### @RequestMapping
 
 - ` @RequestMapping(value=”“) `
-- URI의 요청과 Annotation value 값이 일치하면 해당 클래스나 메소드가 실행된다.
+- 웹브라우저 주소창에 url를 입력하면 이 어노테이션에 등록된 메서드가 호출된다.
 - Class 단위에 사용하면 하위 메소드에 모두 적용된다.
 - 메소드에 적용되면 해당 메소드에서 지정한 방식으로 URI를 처리한다.
 
@@ -789,7 +794,7 @@ public class TVUser {
 
 - @ResponseBody 가 붙은 파라미터가 있으면 HTTP요청의 미디어타입과 파라미터의 타입을 먼저 확인한다.
 
-- return 시에 json, xml과 같은 데이터를 return한다.
+- html 태그없이 문자열 데이터만 응답된다 (Json, xml등 Rest Api형태 응답)
 
 
 
@@ -833,3 +838,30 @@ public class TVUser {
 - @PostMapping은  **주소에 파라미터가 노출되지 않는다.**
 
 ![get,post](https://github.com/yuseons/TIL/blob/master/image/get%2Cpost.png)
+
+
+
+
+
+## ◻ 의존성 관리
+
+
+
+### 스프링의 의존성 관리 방법
+
+- 스프링 프레임워크는 객체 생성과 의존관계를 컨테이너가 자동으로 관리한다.
+- 스프링 IoC의 핵심 원리이고 두 가지 형태로 지원한다.
+
+
+
+![Dependency Injection]()
+
+- Dependency Lookup : 컨테이너가 객체생성하고 클라이언트가 검색(Lookup)하여 사용하는 방식
+
+  
+
+- 대부분의 실제 애플리케이션 개발과정에선 Dependency Injection을 사용한다.
+
+- Dependency Injection : 객체 사이의 의존 관계를 프로그램 코드에 포함된 어노테이션 정보를 바탕으로 컨테이너가 자동으로 처리해 준다.
+
+- 의존성 설정을 바꾸고 싶을 땐 프로그램 코드의 어노테이션 정보만 수정하여 변경사항을 적용할 수 있어 유지 보수가 향상된다.

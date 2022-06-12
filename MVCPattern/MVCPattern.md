@@ -510,3 +510,39 @@ public class NullAction implements Action {
 
 
 ### [2] MVC의 구현(Controller, config, web.xml) 
+
+
+
+#### - config.properties 
+
+/WEB-INF/config/config.properties 
+
+- \# : 주석
+- *.do : 일반적으로 명령어의 확장자로 do를 사용한다. 
+
+```properties
+# command = Action class Mapping List 
+/mvc/hello.do=action.HelloAction
+/mvc/date.do=action.DateAction
+```
+
+
+
+#### - web.xml 
+
+/WEB-INF/web.xml
+
+- xml 선언문 앞에 공백이나 빈 문자가 있으면 안된다. 
+
+- `<load-on-startup>` : Application 로딩시 자동으로 실행하라는 태그 
+
+- `<url-pattern></url-pattern> `
+
+  구현한 서블릿은 특정 URL에 매핑을 해줘야한다.
+
+  그래야 클라이언트에서 해당 URL로 요청시 해당 서블릿이 요청을 처리할 수 있다.
+  
+  - **url-pattern에 등록할 수 있는 URL**
+  - 폴더 매핑  : /mvc 
+       폴더 매핑  : /mvc/* 
+        확장자 매핑 : *.do 
