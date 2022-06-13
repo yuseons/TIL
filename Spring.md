@@ -1,4 +1,4 @@
-# 🔸Spring Boot
+# 🔸Spring
 
 ## ◻ Framework
 
@@ -22,13 +22,13 @@
 
 \- 같은 프레임워크가 적용된 애플리케이션들은 아키텍처가 같아서 관리가 쉽다.
 
-​ 결과적으로 유지보수에 들어가는 인력과 시간도 줄일 수 있다.
+ 결과적으로 유지보수에 들어가는 인력과 시간도 줄일 수 있다.
 
 #### 3. 개발자들의 역량 획일화
 
 \- 숙련된 개발자와 초급 개발자는 지식과 경험이 달라 두 개발자의 소스의 품질은 다를 수밖에 없다.
 
-​ 하지만 프레임워크를 사용하면 숙련된 개발자와 초급 개발자가 생성한 코드가 비슷하다.
+ 하지만 프레임워크를 사용하면 숙련된 개발자와 초급 개발자가 생성한 코드가 비슷하다.
 
 \- 초급 개발자도 프레임워크를 통해서 세련되고 효율적인 코드를 생성해 낼 수 있다.
 
@@ -70,7 +70,7 @@
 
 \- 어떤 모듈이 사용할 모듈을 개발자가 결정하는 것이 아니라, 다른 모듈에게 선택권을 넘겨준다는 것을 의미한다.
 
-​ 외부에서 필요한 객체를 결정하기 때문에 개발자는 직접 연결 처리를 할 필요가 없고, 인터페이스를 이용해서 편리하게 개발할 수 있다.
+ 외부에서 필요한 객체를 결정하기 때문에 개발자는 직접 연결 처리를 할 필요가 없고, 인터페이스를 이용해서 편리하게 개발할 수 있다.
 
 #### 3. 의존성 관리(DI : Dependency Injection)
 
@@ -88,17 +88,17 @@
 
 \- 핵심적인 관점, 부가적인 관점으로 나누어서 보고 그 관점을 기준으로 각각 모듈화하는 것이다.
 
-​ 기능을 핵심 관심 사항(Core Concern)과 공통 관심 사항(Cross-Cutting Concern)으로 분리시키고 각각을 모듈화한다
+ 기능을 핵심 관심 사항(Core Concern)과 공통 관심 사항(Cross-Cutting Concern)으로 분리시키고 각각을 모듈화한다
 
-​ 부가 기능을 애스펙트(Aspect)로 정의하여, 핵심 기능에서 부가 기능을 분리함으로써 핵심 기능을 설계하고 구현할 때 객체지향적인 가치를 지킬 수 있게 도와주는 개념이다.
+ 부가 기능을 애스펙트(Aspect)로 정의하여, 핵심 기능에서 부가 기능을 분리함으로써 핵심 기능을 설계하고 구현할 때 객체지향적인 가치를 지킬 수 있게 도와주는 개념이다.
 
 \- 공통 모듈의 반복적인 코드를 줄이고, 핵심 비즈니스 로직에만 집중할 수 있는 방법을 제공한다.
 
 \- 코드 = **핵심 관심사항** + **횡단 관심사항**
 
-​ 핵심 관심 : 시스템의 핵심 가치와 목적이 드러난 기존 비즈니스 로직
+ 핵심 관심 : 시스템의 핵심 가치와 목적이 드러난 기존 비즈니스 로직
 
-​ 횡단 관심 : 로깅이나 예외, 트랜잭션 처리 같은 코드같이 비즈니스 컴포넌트에 공통적으로 추가되고 실행되어야 하는 코드들
+ 횡단 관심 : 로깅이나 예외, 트랜잭션 처리 같은 코드같이 비즈니스 컴포넌트에 공통적으로 추가되고 실행되어야 하는 코드들
 
 ![AOP](https://github.com/yuseons/TIL/blob/master/image/AOP.jpg)
 
@@ -716,10 +716,54 @@ public class TVUser {
 - Class 단위에 사용하면 하위 메소드에 모두 적용된다.
 - 메소드에 적용되면 해당 메소드에서 지정한 방식으로 URI를 처리한다.
 
-### @RequestParam
+### @PathVariable
+
+- Parameter를 URL형식으로 받기  
+
+### @RequestParam 
+
+- @RequestParam은 1개의 HTTP 요청 파라미터를 받기 위해서 사용한다. 
+
+- Form페이지에서 넘어오는 파라미터를 받을수 있다. 
+
+- ```java
+     public String edit( @RequestParam("id") int id,  
+                         @RequestParam("title") String title,  
+                         @RequestParam("file") MultipartFile file ) {...} 
+    
+  ```
 
 - URL파라미터로 전달받은 value를 메서드의 파라미터로 받을 수 있게 해준다.
-- 메소드의 파라미터값으로 @RequestParam을 넣어주면된다.
+
+  - EX) `/web?name="value"`  -> url이 전달될 때 name 파라미터(name에 담긴 value)를 받아오게 된다.
+
+- @RequestParam은 필수 여부가 true이기 때문에 기본적으로 반드시 해당 파라미터가 전송되어야 한다.
+
+- 해당 파라미터가 없다면 HTTP 400 - Bad Request 가 전달된다. 
+
+  - 이를 방지하고자 default 값을 설정해 준다.
+
+- 파라미터가 필수가 아니라면 required = false 로 지정하면 된다.  
+
+- 파라미터가 없으면 NULL이 들어가며, default로 받을 값을 defaultValue 옵션을 통해 설정할 수도 있다.
+
+- ```java
+  public void view( @RequestParam(value = "id",  
+                                  required = false,  
+                                  defaultValue = "0" )  int id) {..}.     
+  
+  ```
+
+- @RequestParam을 생략하여 사용할수 있다.
+
+  - Map타입으로 데이터를 받을경우는 반드시 @RequestParam을 명시해야 데이터를 받아온다.
+
+  - ```java
+      <input type="text" name="id" /><br>
+      <input type="password" name="passwd" /> 
+            
+      public String add( @RequestParam Map<String, String> params ) {...} 
+    ```
 
 ### @RequestBody
 
@@ -761,6 +805,8 @@ public class TVUser {
 <context:component-scan base-package="factory.userfactory" />
 ```
 
+
+
 ### - @RequestMapping , @GetMapping , @PostMapping
 
 #### [1] @RequestMapping
@@ -779,6 +825,8 @@ public class TVUser {
 
 ![get,post](https://github.com/yuseons/TIL/blob/master/image/get%2Cpost.png)
 
+
+
 ## ◻ 의존성 관리
 
 ### 스프링의 의존성 관리 방법
@@ -789,9 +837,70 @@ public class TVUser {
 ![Dependency Injection](https://github.com/yuseons/TIL/blob/master/image/Dependency%20Injection.jpg)
 
 - Dependency Lookup : 컨테이너가 객체생성하고 클라이언트가 검색(Lookup)하여 사용하는 방식
-
 - 대부분의 실제 애플리케이션 개발과정에선 Dependency Injection을 사용한다.
-
 - Dependency Injection : 객체 사이의 의존 관계를 프로그램 코드에 포함된 어노테이션 정보를 바탕으로 컨테이너가 자동으로 처리해 준다.
-
 - 의존성 설정을 바꾸고 싶을 땐 프로그램 코드의 어노테이션 정보만 수정하여 변경사항을 적용할 수 있어 유지 보수가 향상된다.
+
+
+
+## ◻스프링 MVC의 주요 구성 요소 
+
+\- MVC 패턴의 구조는 Model, Controller, View 세 가지로 나누어 진다.
+
+\- Model: 비즈니스 로직과 DB 등에 대한 처리를 수행한다.
+
+\- Controller : 뷰와 모델을 이어주는 역할을 맡는다. 
+
+뷰의 요청에 따라 모델의 상태를 바꾸고, 이를 다시 뷰에 전달한다.
+
+\- View : 사용자에게 보이는 영역이다. 
+
+컨트롤러를 통해 모델에 질의를 보내고, 그 값을 사용자에게 적절하게 보여준다.
+
+
+
+### - Spring 웹 계층
+
+\- 스프링에는 5가지 요소가 존재한다.
+
+![SpringWebLayer]()
+
+#### 1. Web Layer
+
+- 외부 요청과 응답에 대한 전반적인 영역이다.
+
+- 컨트롤러(@Controller)와 JSP/Freemarker 등의 뷰 템플릿 영역이다.
+- 이외에도 필터(@filter), 인터셉터, 컨트롤러 어드바이스 등 외부 요청과 응답에 대한 전반적인 영역도 Web Layer에 포함된다.
+
+
+#### 2. Service Layer
+
+- 서비스 영역(@Service)이다.
+
+- Web Layer와 Repository Layer를 연결하는 역할을 하며, 두 계층이 직접적으로 연결되지 않게 한다.
+  - 일반적으로 컨트롤러와 저장소(Repository, Dao)의 중간에 위치한다.
+
+- 트랜잭션(@Transactional, 데이터베이스의 상태를 변환시키는 하나의 논리적 기능을 수행하기 위한 작업의 단위)이 사용되어야 하는 영역이다.
+
+
+#### 3. Repository Layer
+
+- 데이터베이스와 직결되는 계층으로, DB와 같은 데이터 저장소(repository)에 접근하는 영역이다.
+- DAO 혹은 @Repository 어노테이션을 사용한 DAO 구현 클래스가 이 계층에 속한다.
+- DB에 데이터를 CRUD(Create, Read, Update, Delete)하는 곳이다.
+  
+
+#### 4. DTOs
+
+- DTO(Data Transfer Object)는 단순히 데이터를 저장하는 컨테이너로, 계층 간의 데이터 교환을 위한 객체이다.
+  - DTOs는 이들이 존재하는 영역을 의미한다.
+- 주로 DB에서 데이터를 받아 Service 혹은 Controller 등으로 보낼 때 사용한다. 
+- Repository Layer에서 결과로 넘겨 준 객체 등이 DTO에 해당한다.
+
+
+#### 5. Domain model
+
+- 개발 대상, 즉 도메인을 모든 사람이 동일한 관점에서 이해할 수 있고 공유할 수 있도록 단순화한 것을 도메인 모델이라고 한다.
+  - 예를 들어, 택시 앱의 배차, 탑승, 요금 등이 도메인에 해당한다.
+- JPA를 사용한다면, @Entity가 사용되는 영역 역시 도메인 모델이라 할 수 있다.
+- 무조건 데이터베이스의 테이블과 관계가 있어야 하는 것은 아니다. VO처럼 값 객체들도 이 영역에 해당하기 때문이다.
