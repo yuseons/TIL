@@ -944,7 +944,7 @@ public class TVUser {
 - Mybatis Framework가 Business Layer(Persistance Layer + Service Layer)와 DB Layer사이 가운데서 양쪽을 연결하고 있다.
 - 하단의 mapper.xml 파일을 이용하여 쿼리문을 별도로 작성한다.
 
-![MybatisComponentFlow]()
+![MybatisComponentFlow](https://github.com/yuseons/TIL/blob/master/image/MybatisComponentFlow.jpg)
 
 
 
@@ -952,7 +952,7 @@ public class TVUser {
 
 
 
-![mybatis구성요소]()
+![mybatis구성요소](https://github.com/yuseons/TIL/blob/master/image/mybatis%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C.jpg)
 
 
 
