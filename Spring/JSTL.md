@@ -38,3 +38,16 @@
 |           | \<c:url>       | URL을 재작성                                             |
 | 기타 태그 | \<c:catch>     | 예외 처리에 사용                                         |
 |           | \<c:out>>      | <% = ... %> 태그 작동 방식과 유사한 표현식의 결과를 표시 |
+
+- out 태그 
+   \- JspWriter에 데이터를 출력
+   \- \<pre>~\</pre>는 공백과 엔터를 있는 그대로 출력
+   \- escapeXml="true": < <, > >, & &, ' ', " " 출력
+
+- 국제화 태그 : 숫자 및 날짜 포맷팅 
+
+  - formatNumber Tag 
+     \- groupingUsed="false": ','구분기호를 사용할지 여부를 결정
+
+  - timeZone, setTimeZone Tag
+     \- 홍콩에서 한국에 있는 서버에 접속시에 한국시간이 아닌 홍콩의 시간이 출력이 되도록 하는 기능
