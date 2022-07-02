@@ -41,9 +41,20 @@
     | 기타 태그 | \<c:catch>     | 예외 처리에 사용                                         |
     |           | \<c:out>>      | <% = ... %> 태그 작동 방식과 유사한 표현식의 결과를 표시 |
   
-  - formatting tags : 숫자, 날짜, 시간을 formatting하는 기능과 국제화, 다국어 지원 기능을 제공
-    - setLocale : 통화 기호나 시간 대역을 설정한 지역에 맞게 표시한다.
-    - timeZone : 특정 영역의 시간대를 설정한다.
-    - setTimeZone : 특정 영역의 시간대 설정 정보를 변수에 저장한다.
+    
   
-    - formatNumber : 숫자를 특정 양식에 맞추어 출력한다.
+  - formatting tags : 숫자, 날짜, 시간을 formatting하는 기능과 국제화, 다국어 지원 기능을 제공
+    
+  - 포매팅 태그 라이브러리 종류
+    
+    - `<fmt:timeZone>` : 지정한 국가의 시간을 지정하는 태그
+    
+    - `<fmt:setTimeZone>`: 지정한 국가의 시간을 지정하는 태그.
+    
+      \- 태그를 열고 닫는 영역 안에서만 적용된다
+    
+      => setTimeZone 태그는 태그를 열고 닫는 영역 안에서만 적용된다는 점에서 timeZone태그와의 	차이점이 있다.
+    
+    - `<fmt:formatNumber>`: 표시할 숫자의 형식을 지정
+    
+    - `<fmt:formatDate>`: 지정한 형식의 날짜를 표시
