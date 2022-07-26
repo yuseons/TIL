@@ -565,10 +565,10 @@ var ret = confirm("입력한 값이 맞습니까?");
 - Ajax로 폼 전송을 가능하게 해주는 객체이다.
   보통은 JSON 구조(KEY-VALUE)로 데이터를 전송하지만 이미지를 ajax로 업로드할 땐 FormData 객체를 사용한다.
 
-```
+```javascript
 let formData = new FormData([form]);
 
-  // HTML에 form 요소가 있는 경우, 해당 폼 요소의 필드 전체가 자동 반영된다.
+// HTML에 form 요소가 있는 경우, 해당 폼 요소의 필드 전체가 자동 반영된다.
 ```
 
 - fetch 등의 네트워크 메서드가 FormData 객체를 바디로 받는다.
@@ -599,7 +599,7 @@ let formData = new FormData([form]);
 
 > - 폼에 필드를 추가하고 여기에 이미지 이름 등의 메타데이터를 같이 실어 넘겨주는 게 좀 더 편리하다.
 
-```
+```javascript
 let formData = new FormData();
 formData.append("image", imageBlob, "image.png");
 
